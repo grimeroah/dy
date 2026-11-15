@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f2e4e3">
+<title>little memories, kept here</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --paper: #f8f0e8;
+  --paper-deep: #efe2d8;
+  --ink: #51463f;
+  --muted: #918078;
+  --pink: #d9aeb4;
+  --pink-dark: #ad7e88;
+  --rose: #f0d9d9;
+  --line: #ddc9c0;
+  --shadow: rgba(65,45,43,.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 30px 14px 55px;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 8%, #fff4ef 0, transparent 35%),
+    radial-gradient(ellipse at 88% 75%, #e4c4c5 0, transparent 38%),
+    linear-gradient(135deg, #a99a8e, #d5b8b5 52%, #8d8278);
+  overflow-x: hidden;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .14;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(900px, 100%);
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  color: #fff7f1;
+  text-shadow: 0 2px 12px #46343155;
+  margin: 4px auto 27px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+
+h1 {
+  font: italic 400 clamp(32px, 6vw, 51px) "Playfair Display", serif;
+  margin: 10px 0 4px;
+}
+
+header p {
+  font: 21px "Caveat", cursive;
+  margin: 0;
+}
+
+.sheet {
+  background: var(--paper);
+  border: 1px solid #f8e9e2;
+  box-shadow: 0 22px 48px var(--shadow);
+  padding: clamp(18px, 4vw, 42px);
+  position: relative;
+}
+
+.sheet:before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid #e7d5cc;
+  pointer-events: none;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 15px;
+  position: relative;
+}
+
+.section-heading h2 {
+  font: italic 400 25px "Playfair Display", serif;
+  margin: 0;
+}
+
+.section-heading span {
+  font: 17px "Caveat", cursive;
+  color: var(--pink-dark);
+}
+
+/* PHOTO SECTION */
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  position: relative;
+}
+
+.photo-card {
+  min-width: 0;
+  background: #f0e2da;
+  padding: 9px 9px 13px;
+  border: 1px solid #e5d1c8;
+  box-shadow: 0 5px 13px #604c4320;
+  transform: rotate(-1deg);
+}
+
+.photo-card:nth-child(2) {
+  transform: rotate(1deg);
+}
+
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #ead9d3, #d9c3bf);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-placeholder {
+  text-align: center;
+  padding: 12px;
+  color: #8f7772;
+  font: 19px "Caveat", cursive;
+}
+
+.photo-placeholder b {
+  display: block;
+  font: 10px "DM Sans", sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  color: #a07e7c;
+}
+
+.photo-caption {
+  text-align: center;
+  font: 18px "Caveat", cursive;
+  color: #78655f;
+  margin: 8px 0 0;
+}
+
+/* LETTER SECTION */
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+  margin: 32px 0;
+}
+
+.letter-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.letter-heading h2 {
+  font: italic 400 28px "Playfair Display", serif;
+  margin: 0;
+}
+
+.letter-heading small {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .08em;
+}
+
+.letter-paper {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 35px,
+      #e7d8cf 36px
+    );
+  background-color: #fbf5ed;
+  border: 1px solid #eadbd2;
+  padding: 20px clamp(15px, 4vw, 34px) 25px;
+  box-shadow: inset 0 0 22px #d6bfb21c;
+}
+
+.letter-paper:before {
+  content: "";
+  position: absolute;
+  left: clamp(35px, 7vw, 62px);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #e5c3c4;
+  opacity: .8;
+}
+
+#letterText {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 510px;
+  resize: vertical;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #5c4d47;
+  padding: 0 4px 0 clamp(34px, 7vw, 56px);
+  font: 21px/36px "Caveat", cursive;
+  white-space: pre-wrap;
+}
+
+#letterText::placeholder {
+  color: #b29d94;
+  opacity: 1;
+}
+
+.letter-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+  position: relative;
+}
+
+.signature {
+  font: 22px "Caveat", cursive;
+  color: #916b70;
+}
+
+.status {
+  font-size: 10px;
+  color: #9a8880;
+  letter-spacing: .06em;
+}
+
+/* BUTTONS */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 0;
+  position: relative;
+}
+
+.btn,
+.back-link {
+  border: 1px solid #c99da3;
+  background: #e8cdd0;
+  color: #624d4b;
+  padding: 11px 17px;
+  font: 10px "DM Sans", sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover,
+.back-link:hover {
+  background: #f3dfe0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px #74545a22;
+}
+
+.btn.secondary {
+  background: transparent;
+  border-color: #cbb8ae;
+  color: #75645d;
+}
+
+footer {
+  text-align: center;
+  color: #fff4ed;
+  font: 18px "Caveat", cursive;
+  margin-top: 24px;
+  text-shadow: 0 1px 8px #493b3555;
+}
+
+/* MOBILE */
+
+@media (max-width: 560px) {
+  body {
+    padding: 22px 10px 38px;
+  }
+
+  .photo-grid {
+    gap: 9px;
+  }
+
+  .photo-card {
+    padding: 6px 6px 10px;
+  }
+
+  .photo-caption {
+    font-size: 16px;
+  }
+
+  .section-heading h2 {
+    font-size: 22px;
+  }
+
+  .letter-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #letterText {
+    min-height: 560px;
+    font-size: 20px;
+  }
+
+  .sheet:before {
+    inset: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+  <header>
+    <div class="eyebrow">make reading a habit</div>
+    <h1>memories, tucked away</h1>
+    <p>everything i want to say</p>
+  </header>
+
+  <section class="sheet">
+
+    <div class="section-heading">
+      <h2>the moments I keep</h2>
+      <span>♡ somewhere in time</span>
+    </div>
+
+    <!-- PHOTO GALLERY -->
+
+    <div class="photo-grid">
+
+      <article class="photo-card">
+        <div class="photo-frame">
+          <img
+            src="photos/memory1.jpg"
+            alt="First memory"
+            onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+          >
+
+          <div class="photo-placeholder" hidden>
+            <b>photo no. 01</b>
+            <3 ♡
+          </div>
+        </div>
+
+        <p class="photo-caption" contenteditable="true">
+          aso
+        </p>
+      </article>
+
+      <article class="photo-card">
+        <div class="photo-frame">
+          <img
+            src="photos/memory2.jpg"
+            alt="Second memory"
+            onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+          >
+
+          <div class="photo-placeholder" hidden>
+            <b>photo no. 02</b>
+            another little piece of us ♡
+          </div>
+        </div>
+
+        <p class="photo-caption" contenteditable="true">
+          aso ulit
+        </p>
+      </article>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- let -->
+
+    <div class="letter-heading">
+      <h2>super belated happy birthday</h2>
+      <small>akjsciabcaiubca</small>
+    </div>
+
+    <div class="letter-paper">
+      <textarea
+        id="letterText"
+        spellcheck="true"
+        placeholder="Ito naman, walang tampo na letter. 
+
+I'd like to acknowledge things muna, especially for those things na I am grateful for. Thank you, kasi binilhan mo ako mg cellphone hahahaha. Nonchalant ako noon, kasi hindi nag si-sink in sa'kin, niloloko lang kasi kita hahahaha. Hindi ko alam na bibili ka pala talaga. 
+
+Next, I've come to realization that you leaving wasn't so bad. Siguro, nag grow ako as a person hahahaha. Pero I'm happy of what you've achieved, and I am also proud for knowing someone like you. 
+
+These days, may problema na naman ako. Hindi naman sa bahay, but myself. Hindi maarte, pero I'd admit na hindi ako satisfied on my living instances ngayon. Gusto ko na nga lang sumigaw minsan, kesyo parang kasalanan ko pa na present ako sa mundong 'to. Parang obligated pa ako, e trabaho naman ng magulang na ibigay ang needs ng anak nila, 'di ba? Ayaw ko na mag aral, sa totoo lang. Gusto ko na lang mag trabaho, pero at the same time, gusto ko rin magtapos hahaha.
+
+Drained na ako sa mga nangyayari, I find myself isolating lang sa bahay most of the time. Pati kahit alam ko na may dapat akong tapusin, hindi ko siya nagagawa kasi wala na akong gana. Yet, I still want to thrive and continue.
+
+I'm writing this letter to let you know how much I appreciate you, and para rin sabihin na you're one of the reasons kung bakit nandito pa ako. I love you always, tita Dyanne."
+      ></textarea>
+    </div>
+
+    <div class="letter-footer">
+      <span class="signature">written with love, sydney ♡</span>
+      <span class="status" id="saveStatus" aria-live="polite">
+        your letter stays in this browser
+      </span>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+
+    <div class="actions">
+      <button class="btn" id="saveButton" type="button">
+        save this letter
+      </button>
+
+      <button class="btn secondary" id="downloadButton" type="button">
+        download letter
+      </button>
+
+      <a class="back-link" href="index.html">
+        back to the first letter ↗
+      </a>
+    </div>
+
+  </section>
+
+  <footer>
+    ang ganda ko talaga ♡
+  </footer>
+
+</main>
+
+<script>
+
+// SAVE THE LETTER IN THIS BROWSER AUTOMATICALLY.
+
+const letterText = document.getElementById('letterText');
+const saveStatus = document.getElementById('saveStatus');
+const STORAGE_KEY = 'memoriesPageLetter';
+
+try {
+  const savedLetter = localStorage.getItem(STORAGE_KEY);
+
+  if (savedLetter !== null) {
+    letterText.value = savedLetter;
+  }
+} catch (error) {
+  saveStatus.textContent = 'local saving is unavailable in this browser';
+}
+
+function saveLetter() {
+  try {
+    localStorage.setItem(STORAGE_KEY, letterText.value);
+    saveStatus.textContent = 'saved in this browser ♡';
+  } catch (error) {
+    saveStatus.textContent = 'could not save here — try downloading your letter';
+  }
+}
+
+letterText.addEventListener('input', function() {
+  saveStatus.textContent = 'unsaved changes';
+  saveLetter();
+});
+
+document.getElementById('saveButton').addEventListener('click', saveLetter);
+
+
+// dl let
+
+document.getElementById('downloadButton').addEventListener('click', function() {
+
+  const text = letterText.value || 'A letter waiting to be written...';
+
+  const blob = new Blob([text], {
+    type: 'text/plain;charset=utf-8'
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = 'a-letter-to-remember.txt';
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  URL.revokeObjectURL(url);
+
+});
+
+</script>
+
+</body>
+</html>
